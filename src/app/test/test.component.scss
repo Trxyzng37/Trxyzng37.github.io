@@ -1,0 +1,14 @@
+:host {
+    width: 70%;
+    // height: 100%;
+    display: block;
+    background-color: var(--primary_background_color);
+    position: relative;
+    top: 50px;
+}
+
+quill-editor {
+    width: auto;
+    height: auto;
+    background-color: bisque;
+}

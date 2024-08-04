@@ -1,17 +1,7 @@
-<app-header-bar
-    (openNavigationEvent)="openNavigation($event)"
-></app-header-bar>
-<app-navigation-bar [ngStyle]="{'display': isNavigationOpen ? 'block' : 'none'}"
-    (showCommunityFormEvent)="openCreateCommunityForm()"
->
-</app-navigation-bar>
+<app-header-bar></app-header-bar>
+<app-navigation-bar></app-navigation-bar>
 <div id="outlet">
     <router-outlet>
     </router-outlet>
 </div> 
-<!-- <app-recent-visited-post></app-recent-visited-post> -->
-<div id="create_community_container" *ngIf="isCreateCommunityFormShow">
-    <create-community
-        (closeFormEvent)="openCreateCommunityForm()"
-    ></create-community>
-</div>
+<app-recent-visited-post></app-recent-visited-post>

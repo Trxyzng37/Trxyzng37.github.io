@@ -1,21 +1,44 @@
 <nav id="recent_visited_post_bar">
-    <b style="font-size: 14px; font-weight: 500;">RECENT POSTS</b>
-    <div id="block" *ngFor="let post of posts; let i=index">
-        <div id="post_block">
-            <div id="info_lock" [ngStyle]="{'width': img[i].length != 0 ? '70%' : 'auto', 'height': img[i].length != 0 ? '100%' : 'auto'}">
-                <div id="community_block">
-                    <a href="post/{{post.post_id}}"><img src="{{post.community_icon}}"><p style="margin-left: 5px;">r/{{post.community_name}}</p></a>
-                </div>
-                <a href="post/{{post.post_id}}"><b>{{post.title}}</b></a>
-            </div>
-            <div id="img_block" *ngIf="img[i].length != 0">
-                <img src="{{img[i]}}">
-            </div>
-        </div>
-        <div id="vote_block">
-            <p class="txt_vote" *ngIf="post.vote > 0">{{presentationService.transformNumber(post.vote)}} upvotes</p>
-            <p class="txt_vote" *ngIf="post.vote == 0">{{presentationService.transformNumber(post.vote)}} vote</p>
-            <p class="txt_vote" *ngIf="post.vote < 0">{{presentationService.transformNumber(post.vote)}} downvotes</p>
-        </div>
-    </div>
+    <a href="/home"><span>Recent visit 1</span></a>
+    <a href="/home"><span>Recent visit 1</span></a>
+    <a href="/home"><span>Recent visit 1</span></a>
+    <a href="/home"><span>Recent visit 1</span></a>
+    <a href="/home"><span>Recent visit 1</span></a>
+    <a href="/home"><span>Recent visit 1</span></a>
+    <a href="/home"><span>Recent visit 1</span></a>
+    <a href="/home"><span>Recent visit 1</span></a>
+    <a href="/home"><span>Recent visit 1</span></a>
+    <a href="/home"><span>Recent visit 2</span></a>
+    <a href="/home"><span>Recent visit 2</span></a>
+    <a href="/home"><span>Recent visit 2</span></a>
+    <a href="/home"><span>Recent visit 2</span></a>
+    <a href="/home"><span>Recent visit 2</span></a>
+    <a href="/home"><span>Recent visit 2</span></a>
+    <a href="/home"><span>Recent visit 2</span></a>
+    <a href="/home"><span>Recent visit 2</span></a>
+    <a href="/home"><span>Recent visit 2</span></a>
+    <a href="/home"><span>Recent visit 2</span></a>
+    <a href="/home"><span>Recent visit 3</span></a>
+    <a href="/home"><span>Recent visit 3</span></a>
+    <a href="/home"><span>Recent visit 3</span></a>
+    <a href="/home"><span>Recent visit 3</span></a>
+    <a href="/home"><span>Recent visit 3</span></a>
+    <a href="/home"><span>Recent visit 3</span></a>
+    <a href="/home"><span>Recent visit 3</span></a>
+    <a href="/home"><span>Recent visit 3</span></a>
+    <a href="/home"><span>Recent visit 3</span></a>
+    <a href="/home"><span>Recent visit 3</span></a>
+    <a href="/home"><span>Recent visit 3</span></a>
+    <a href="/home"><span>Recent visit 3</span></a>
+    <a href="/home"><span>Recent visit 3</span></a>
+    <a href="/home"><span>Recent visit 4</span></a>
+    <a href="/home"><span>Recent visit 4</span></a>
+    <a href="/home"><span>Recent visit 4</span></a>
+    <a href="/home"><span>Recent visit 4</span></a>
+    <a href="/home"><span>Recent visit 4</span></a>
+    <a href="/home"><span>Recent visit 4</span></a>
+    <a href="/home"><span>Recent visit 4</span></a>
+    <a href="/home"><span>Recent visit 4</span></a>
+    <a href="/home"><span>Recent visit 4</span></a>
+    
 </nav>

@@ -21,9 +21,7 @@ export class SignupService {
   public UsernamePasswordSignUp(username: string, password: string, email: string): Observable<UsernamePasswordSignUpResponse> {
     const signUpData: UsernamePasswordSignupRequest = new UsernamePasswordSignupRequest(username, password, email);
     const body: string = JSON.stringify(signUpData);
-    let header: HttpHeaders = new HttpHeaders();
-    header = header.append("Accept", 'application/json');
-    header = header.append('Content-Type', 'application/json');
-    return this.postService.post(this.endpoint, header, body, true);
+    const header: HttpHeaders = new HttpHeaders();
+    return this.postService.post(this.endpoint, header, body, false);
   }
 }

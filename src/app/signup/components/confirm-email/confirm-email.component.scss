@@ -1,43 +1,24 @@
 :host {
-    width: 100vw;
-    height: 100vh;
-    overflow-y: auto;
-    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#main_logo {
-    width: 60px;
-    aspect-ratio: 1/1;
-    margin-bottom: 10px;
-}
-
-#confirm_container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    padding-bottom: 30px;
-}
-
-#confirm_container > * {
+:host > * {
     margin: 10px 0px;
 }
 
 form {
-    width: 500px;
+    width: var(--form_length);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    border: 1px solid black;
+    border: 1px blue solid;
     border-radius: 5px;
-    background-color: #ffffff;
+    background-color: aliceblue;
 }
 
 form > * {
@@ -45,43 +26,37 @@ form > * {
 }
 
 input {
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 5px;
-    width: 150px;
-    height: auto;
-    padding: 10px 10px;
+    width: 90%;
+    height: 25px;
     margin-bottom: 10px;
-    text-align: center;
-    font-size: 26px;
-    font-weight: 500;
 }
 
 #btn_submit {
-    background-color: var(--allow);
+    background-color: #92e596;
     font-size: medium;
-    width: auto;
-    height: auto;
-    padding: 5px 20px;
-    border: 1px black solid;
-    border-radius: 20px;
+    width: 150px;
+    height: 30px;
+    border: 2px black solid;
+    border-radius: 5px;
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 #div_resend {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;margin-left: 18%;
 }
 
 #btn_resend_passcode {
-    background-color: var(--allow);
+    background-color: #92e596;
     font-size: 14px;
-    font-weight: 500;
-    padding: 5px 20px;
-    margin-left: 10px;
+    height: 21px;
+    width: 70px;
+    margin: 0px 10px;
     border: 1px solid black;
-    border-radius: 20px;
 }

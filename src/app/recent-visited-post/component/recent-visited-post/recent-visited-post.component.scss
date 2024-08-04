@@ -2,119 +2,19 @@
     width: 100%;
     height: 100%;
     display: block;
-    background-color: var(--neutral);
+    background-color: rgb(243, 172, 230);
     overflow: hidden;
     scrollbar-gutter: stable;
+    padding-right: calc(var(--scrollbar_size) - 1px);
     background-clip: content-box;
     box-sizing: border-box;
-    // border-radius: 10px;
-    padding-right: 10px;
-}
-
-a {
-    color: var(--secondary_color) !important;
 }
 
 #recent_visited_post_bar:hover {
     overflow-y: auto;
 }
 
-#recent_visited_post_bar > b {
-    display: block;
-    width: 100%;
-    height: auto;
-    padding: 10px;
-}
-
 a {
     display: block;
-}
-
-a:hover {
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-
-#block {
-    width: 100%;
-    height: auto;
-    padding: 10px 10px;
-    border-bottom: 1px solid var(--light_border);
-}
-
-#post_block {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    // align-items: center;
-}
-
-#info_lock {
-    width: 70%;
-    height: auto;
-}
-
-#info_lock > a {
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical; 
-    margin-top: 5px;
-}
-
-#community_block {
-    width: 100%;
-    height: 25px;
-}
-
-#community_block > a {
-    width: 100%;
-    height: 100%;
-}
-
-#community_block img {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-}
-
-#community_block > a {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    font-size: 14px;
-}
-
-#img_block {
-    width: 30%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-left: 10px;
-}
-
-#img_block > img {
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
-    border: 1px solid var(--light_border);
-}
-
-#vote_block {
-    width: 100%;
-    height: auto;
-    margin-top: 3px;
-}
-
-.txt_vote {
-    font-size: 13px;
-    font-weight: 400;
+    padding: 10px 0;
 }

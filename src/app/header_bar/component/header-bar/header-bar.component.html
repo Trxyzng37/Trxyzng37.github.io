@@ -1,48 +1,42 @@
 
 <header id="header">
-    <div id="main_logo_block" title="Go to home page" (click)="goToMainPage()">
-        <button type="button" (click)="opeNavigation($event)" title="Open navigation" [ngStyle]="{'background-color': isOpen ? 'var(--neutral)' : 'transparent'}"><i id="icon_open_nav" class="pi pi-bars"></i></button>
-        <a><img id="main_logo" src="assets/icon/logo.png" alt="logo"/></a>
-        <a id="txt_name" style="font-size: 30px; margin-left: 10px;">TRXYZNG</a>
+    <div id="main_logo_block" img>
+        <a href="/home"><img id="main_logo" src="assets/icon/logo.png" alt="logo"/></a>
+        <a href="/home">TRXYZNG</a>
     </div>
 
-    <div id="search_block" title="Search">
-        <i class="pi pi-search" [ngStyle]="{'top': isSearch ? '14px' : '10px'}"></i>
-        <input id="search_box" class="search_box" type="text" placeholder="Search" #input (input)="onChange(input.value)" [ngClass]="{'box_search': isSearch}"/>
+    <div id="search_block">
+        <input id="search_box" type="text" placeholder="search" #input (input)="onChange(input.value)"/>
         <div id="search_result_list">
             <p class="communities_id" [ngStyle]="{'display': communities_result.length > 0 ? 'block':'none'}">Communities</p>
-            <a class="search_result_link" href="/r/{{i.id}}" *ngFor="let i of communities_result">
-                <img class="seach_result_icon" src={{i.avatar}}/>
+            <a class="search_result_link" routerLink="/{{i.name}}" *ngFor="let i of communities_result">
+                <img class="seach_result_icon" src={{i.icon_base64}}/>
                 <div>
                     <p id="community_name">r/{{i.name}}</p>
-                    <p id="member_count">{{presentationService.transformNumber(i.subscriber_count)}} members</p>
+                    <p id="member_count">{{i.subscriber_count}} members</p>
                 </div>
             </a>
             <p class="communities_id" [ngStyle]="{'display': user_profile_result.length > 0 ? 'block':'none'}">People</p>
-            <a class="search_result_link" href="r/{{i.id}}" *ngFor="let i of user_profile_result">
-                <img class="seach_result_icon" src={{i.avatar}}/>
+            <a class="search_result_link" routerLink="/{{i.name}}" *ngFor="let i of user_profile_result">
+                <img class="seach_result_icon" src={{i.icon_base64}}/>
                 <div>
-                    <p id="community_name">r/{{i.username}}</p>
-                    <p id="member_count">{{presentationService.transformNumber(i.post_karma + i.comment_karma)}} karma</p>
+                    <p id="community_name">r/{{i.name}}</p>
+                    <p id="member_count">{{i.karma}} members</p>
                 </div>
             </a>
-            <a id="btn_search" [ngStyle]="{'display': input.value.length > 0 ? 'flex':'none'}" href="search/{{input.value}}"><i class="pi pi-search"></i><p>Search for "{{input.value}}"</p></a>
         </div>
     </div>
 
     <div id="signin_signup_block" [ngStyle]="{'display': isSignIn === true ? 'none':'flex'}">
-        <a href="/signin" title="login">login</a>
-        <a href="/signup" title="register">register</a>
+        <a routerLink="/signin" title="login">login</a>
+        <a routerLink="/signup" title="register">register</a>
     </div>
 
     <div id="logged_in_block" [ngStyle]="{'display': isSignIn === true ? 'flex':'none'}">
-        <button id="btn_create_post" type="button" (click)="createPost()" title="Create a new post"><i class="pi pi-plus"></i>Create</button>
-        <button id="btn_profile" type="button" [ngStyle]="{'box-shadow': isProfileMenuOpen ? 'var(--box_shadow)' : 'none'}" [ngStyle]="{'background-color': isProfileMenuOpen ? 'var(--neutral)' : 'var(--primary_background_color)'}"><img id="user_logo" src="{{userInfo.avatar}}" title="open profile menu" (click)="openProfileMenu($event)"/></button>
+        <button type="button"><img id="user_logo" src="../../../../assets/icon/helldiver.jpg" title="open profile menu" (click)="openProfileMenu($event)"/></button>
         <div id="menu" [ngStyle]="{'display': isProfileMenuOpen === true ? 'block':'none'}">
-            <p id="txt_username">{{userInfo.username}}</p>
-            <button id="btn_1" class="btn_profile_menu" type="button" (click)="navigateToUserProfile()" title="View your profile info"><i class="pi pi-user"></i>View profile</button>
-            <button class="btn_profile_menu" type="button" (click)="useDarkMode()" title="Switch to {{background_mode}}"><i class="pi pi-moon"></i>{{background_mode}}</button>
-            <button id="btn_3" class="btn_profile_menu" type="button" (click)="logOut($event)" title="Log out of this account"><i class="pi pi-upload logout" style="transform: rotate(90deg);"></i>Log Out</button>
+            <button class="btn_profile_menu" type="button">View Profile</button>
+            <button class="btn_profile_menu" type="button" (click)="logOut()">Log Out</button>
         </div>
     </div>
 </header> 

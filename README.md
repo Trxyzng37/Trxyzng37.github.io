@@ -1,46 +1,27 @@
-# DOCUMENTATION
+# Angular
 
-## 1. Introduction
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.9.
 
-This project create a website base on [Reddit](https://www.reddit.com), a social network platform. The website focus on allowing everyone to share their contents with each other, and express their opinion.
+## Development server
 
-## 2. Technologies
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-- The website use [Angular](https://angular.dev) for the front-end, and [Spring](https://spring.io) for back-end.
-- [PostgreSQl](https://www.postgresql.org) is used to store data about users, posts, and communities.
-- [MongoDB](https://www.mongodb.com) is used to store data about comments.
-- [Cloudary](https://cloudinary.com) is used to store images and videos use in posts and communities.
-This repository is the front-end part of the project. The back-end part can be found here: [backend_github_link](https://github.com/Trxyzng37/spring)
+## Code scaffolding
 
-## 3. Functions
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-The website has the following functions:
+## Build
 
-- User can sign-up and sign-in using username password, or using Google account.
-- User can create, edit, delete posts, communities and comments.
-- User can search for communities or other people using name.
-- User can sort posts's order base on time and upvote numbers.
-- User can upvote or downvote a post, and save post to view later.
-- Moderator of a community can control either a post is allow or not in a community.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-*Community*: community is a place where user can submit content that follow the community's interest. A community is created by a user, and the user is also have the ability to control which content can be shown on the community by moderate it.
+## Running unit tests
 
-*Post*: post is a piece of content that is submitted to the website. A post can be text, image, video or link. post can be created and submitted to a community by any user.
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## 4. Run the application locally
+## Running end-to-end tests
 
-- Clone the repository:
-`git clone https://github.com/Trxyzng37/angular.git`
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-- Download requirements:
-`npm install`
+## Further help
 
-- Run the application:
-`npm start`
-
-The above command will run the application locally at address: [http://127.0.0.1:4200](http://127.0.0.1:4200)
-
-- Build the application:
-`ng build --configuration=development`
-
-The output will be in the **output** folder.
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

@@ -1,39 +1,30 @@
 <nav id="navigation_bar">
     <nav id="main_navigation">
-        <a href="/home"><span class="icon pi pi-home"></span><span>Home</span></a>
-        <a id="btn_popular" href="/popular"><span class="icon pi pi-chart-line"></span><span>Popular</span></a>
+        <a routerLink="/home"><span class="icon pi pi-home"></span><span>Home</span></a>
+        <a href="/home/test"><span class="icon pi pi-chart-line"></span><span>Popular</span></a>
+        <a href="/home/main-post"><span class="icon pi pi-align-justify"></span><span>All</span></a>
     </nav>
-
-    <nav *ngIf="moderationCommunities.length > 0"> 
-        <button class="btn_change_status" type="button" (click)="change_moderation_status()">
-            <span>Moderation</span>
-            <span class="pi btn_icon" [ngClass]="moderation_status ? 'pi-chevron-down':'pi-chevron-up'"></span>
-        </button>
-        <div [ngStyle]="{'display': moderation_status ? 'none':'block'}">
-            <a *ngFor="let moderation_community of moderationCommunities" href="r/{{moderation_community.id}}"><img id="img_community_icon" src="{{moderation_community.avatar}}" alt=""/><pre>r/{{moderation_community.name}}</pre></a>
-        </div>
-    </nav>
-    <nav *ngIf="recentVisitCommunities.length > 0">
+    <nav id="recent_visited_communities">
         <button class="btn_change_status" type="button" (click)="change_recent_status()">
             <span>Recent</span>
             <span class="pi btn_icon" [ngClass]="recent_status === 'up' ? 'pi-chevron-down':'pi-chevron-up'"></span>
         </button>
         <div [ngStyle]="{'display': recent_status === 'up' ? 'none':'block'}">
-            <a *ngFor="let recent_community of recentVisitCommunities" href="r/{{recent_community.id}}"><img id="img_community_icon" src="{{recent_community.avatar}}" alt=""/><pre>r/{{recent_community.name}}</pre></a>
+            <a *ngFor="let recent_community of recent_visited_communities_list" routerLink="/r/{{recent_community.name}}"><img id="img_community_icon" src="{{recent_community.icon}}" alt="test"/><pre>r/{{recent_community.name}}</pre></a>
         </div>
+
     </nav>
-    <nav *ngIf="isUser"> 
+    <nav id="subscribed_communities"> 
         <button class="btn_change_status" type="button" (click)="change_favorite_status()">
-            <span>Communities</span>
+            <span>Favorite</span>
             <span class="pi btn_icon" [ngClass]="favorite_status === 'up' ? 'pi-chevron-down':'pi-chevron-up'"></span>
         </button>
-        <nav [ngStyle]="{'display': favorite_status === 'up' ? 'none':'block'}">
-            <button type="button" [ngStyle]="{'margin-bottom': favoriteCommunities.length > 0 ? '0' : '10px'}" (click)="showCreateCommunityForm()"><i class="pi pi-plus"></i><pre>Create a community</pre></button>
-        </nav>
         <div [ngStyle]="{'display': favorite_status === 'up' ? 'none':'block'}">
-            <a *ngFor="let favorite_community of favoriteCommunities" href="r/{{favorite_community.id}}"><img id="img_community_icon" src="{{favorite_community.avatar}}" alt=""/><pre>r/{{favorite_community.name}}</pre></a>
+            <a *ngFor="let recent_community of recent_visited_communities_list" href="/{{recent_community.name}}"><img id="img_community_icon" src="{{recent_community.icon}}" alt="test"/><pre>r/{{recent_community.name}}</pre></a>
         </div>
     </nav>
-    <!-- <p id="trademark">TRXYZNG 2024</p> -->
+    <nav>
+        <a href="/home"><span>All communities</span></a>
+    </nav>
+    <p id="trademark">TRXYZNG 2024</p>
 </nav>
-

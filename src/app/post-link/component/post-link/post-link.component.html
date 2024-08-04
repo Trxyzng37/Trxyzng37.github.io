@@ -1,0 +1,45 @@
+<hr>
+<div id="post_block" (click)="on_click()">
+    <nav id="community_bar">
+        <div id="community_block">
+            <a id="community_link" href="">
+                <img id="community_icon" src="{{communityIcon}}" alt="community_icon"/>
+                <span>{{post_id}}</span>
+            </a>
+            <span>-</span>
+            <span>{{created_at}}</span>
+        </div>
+        <span class="pi pi-ellipsis-h"></span>
+    </nav>
+    <h4 id="content_header">
+        This is a place holder for header of the post. It should show all the contents using h4 header so the content is bold, and all the conent of the header should be shown no matter how long it is. No overflow should be used.
+    </h4>
+    <nav id="main_content">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio temporibus voluptas error distinctio hic quae corrupti vero doloribus optio! Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut odio temporibus voluptas error distinctio hic quae corrupti vero doloribus optio! Inventore ex quaerat modi blanditiis soluta maiores illum, ab velit. 
+        </p>
+        <div id="ddd">
+            <img src="https://res.cloudinary.com/trxyzng-photo-storage/image/upload/v1711289964/test/test.jpg"/>
+        </div>
+    </nav>
+    <nav id="footer">
+        <div id="block_vote">
+            <button id="btn_upvote" type="button"><i class="pi pi-thumbs-up"></i></button>
+            <p id="vote_count">{{vote}}</p>
+            <button id="btn_downvote" type="button"><i class="pi pi-thumbs-down"></i></button>
+        </div>
+        <button id="btn_comment" type="button">
+            <i class="pi pi-comment"></i>
+            <p id="comment_count">317</p>
+        </button> 
+        <button id="btn_share" type="button">
+            <i class="pi pi-upload"></i>
+            <p>Share</p>
+        </button>
+    </nav>
+</div>
+
+
+
+

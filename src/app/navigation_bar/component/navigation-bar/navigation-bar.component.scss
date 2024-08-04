@@ -1,6 +1,5 @@
 :host {
-    position: relative;
-    // min-width: 250px;
+    // box-sizing: content-box;
 }
 
 #main_navigation {
@@ -20,9 +19,9 @@
 }
 
 #navigation_bar > nav {
-    width: 90%;
+    width: 100%;
     height: auto;
-    border-bottom: 1px solid var(--light_border);
+    border-bottom: 1px solid black;
 }
 
 #navigation_bar a, button {
@@ -33,12 +32,11 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    font-size: 16px;
-    color: var(--secondary_color) !important;
+    font-size: 18px;
 }
 
 #navigation_bar a:hover, button:hover {
-    background-color: var(--neutral);
+    background-color: rgb(173, 250, 249);
     border-radius: 10px;
 }
 
@@ -52,17 +50,12 @@ span {
     font-size: 1.5rem;
 }
 
-#btn_popular {
-    margin-bottom: 10px;
-}
-
 .btn_change_status {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin: 10px 0;
 }
 
 .btn_icon.pi-chevron-up::before, .pi-chevron-down::before {
@@ -74,33 +67,10 @@ span {
     text-align: center;
 }
 
-#img_community_icon, button i {
+#img_community_icon {
     width: 30px;
     height: 30px;
     border-radius: 50%;
     margin-left: 20px;
     margin-right: 5px;
-}
-
-button i {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 25px;
-}
-
-@media only screen and (max-width: 1200px) {  
-    #navigation_bar {
-        overflow-y: auto;
-        overflow-x: hidden;
-        // width: 300px;
-    }
-}
-
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-nav > div > a:last-child {
-    margin-bottom: 10px;
 }

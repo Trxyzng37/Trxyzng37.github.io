@@ -1,37 +1,28 @@
-<div id="signup_container">
 <img id="main_logo" src="assets/icon/logo.png" alt="logo"/>
-<b><h2 style="color: black !important;">Create an account</h2></b>
+<p class="p">Create an account</p>
 <form [formGroup]="signUpForm" (ngSubmit)="SignUpFormSubmit()">
-    <label id="lbl_email" for="email" style="color: black !important;">Email</label>
-    <input id="email" name="email" type="text" formControlName="email" placeholder="" style="color: black !important;">
+    <label id="lbl_email" for="email">Email</label>
+    <input id="email" name="email" type="text" formControlName="email" placeholder="">
     <p id="email_ok" [ngClass]="email_status === 'VALID' ? 'email_ok' : 'email_not_ok'">Your email address</p>
-    <label id="lbl_username" for="username" style="color: black !important;">Username</label>
-    <input id="username" name="username" type="text" formControlName="username" placeholder="" style="color: black !important;">
+    <label id="lbl_username" for="username">Username</label>
+    <input id="username" name="username" type="text" formControlName="username" placeholder="">
     <p id="username_ok" [ngClass]="username_status === 'VALID' ? 'username_ok' : 'username_not_ok'">Contain a-z A-Z 0-9, 2 to 16 characters</p>
-    <label id="lbl_password" for="password" style="color: black !important;">Password</label>
-    <input id="password" name="password" type="password" formControlName="password" placeholder="" style="color: black !important;">
+    <label id="lbl_password" for="password">Password</label>
+    <input id="password" name="password" type="text" formControlName="password" placeholder="">
     <p id="password_ok" [ngClass]="password_status === 'VALID' ? 'password_ok' : 'password_not_ok'">Contain a-z A-Z 0-9 symbol, 8 to 20 characters</p>
-    <label id="lbl_confirm_password" for="confirm_password" style="color: black !important;">Confirm password</label>
-    <input id="confirm_password" name="confirm_password" type="password" formControlName="confirm_password" placeholder="" style="color: black !important;">
-    <p id="confirm_password_ok" [ngClass]="confirm_password_status === 'VALID' ? 'confirm_password_ok' : 'confirm_password_not_ok'">Re-enter your password</p>
-    <button type="submit" id="btnSignUp" [disabled]="signUpForm.status == 'INVALID'" style="color: black !important;">Sign up</button>
+    <label id="lbl_confirm_password" for="confirm_password">Confirm password</label>
+    <input id="confirm_password" name="confirm_password" type="text" formControlName="confirm_password" placeholder="">
+    <p id="confirm_password_ok" [ngClass]="confirm_password_status === 'VALID' ? 'confirm_password_ok' : 'confirm_password_not_ok'">Must be the same as your password</p>
+    <button type="submit" id="btnSignUp">Sign up</button>
 </form>
 
-<p style="font-size: 20px !important; color: black !important;">Or</p>
+<p class="p">Or</p>
 <button id="google_login" type="button" (click)="SignUpUsingGoogle()">
     <img id="google_logo" src="assets/icon/google.png" alt="google logo"/>
-    <p id="txt_GoogleSignUp" style="color: black !important;">Sign up using Google</p>
+    <p id="txt_GoogleSignUp">Sign up using Google</p>
 </button>
 
 <div id="signin">
-    <p style="font-size: 20px !important; color: black !important;">Already have an account?</p>
-    <a routerLink="/signin" style="font-size: 20px !important;">Sign in</a>
-</div>
-
-<div id="load_container" *ngIf="isLoad">
-    <div id="load_block">
-        <div class="loader"></div>
-        <b style="padding-top: 10px;font-size: 20px;" style="color: black !important;">Signing up. Please wait...</b>
-    </div>
-</div>
+    <p>Already have an account?</p>
+    <a routerLink="/signin">Sign in</a>
 </div>

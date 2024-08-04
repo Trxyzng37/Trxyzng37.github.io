@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 import { getCookie } from 'typescript-cookie';
 import { GoogleSignUpResponse } from '../../pojo/google-signup-response';
 import { StorageService } from '../../../shared/storage/storage.service';
-import Swal from 'sweetalert2';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -23,9 +22,9 @@ export class SignupComponent implements OnInit {
     username: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(16), 
       Validators.pattern("^[0-9a-zA-Z]{2,16}$")]),
     password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20), 
-      Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[`~!@#$%^&*()_\\-+=\\[\\]{};:'\",.<>?/\\\\|])[A-Za-z\\d`~!@#$%^&*()_\\-+=\\[\\]{};:'\",.<>?/\\\\|]{8,20}$")]),
+      Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$")]),
     confirm_password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20), 
-      Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[`~!@#$%^&*()_\\-+=\\[\\]{};:'\",.<>?/\\\\|])[A-Za-z\\d`~!@#$%^&*()_\\-+=\\[\\]{};:'\",.<>?/\\\\|]{8,20}$")])
+      Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$")])
   }, {validators: SamePasswordValidator('password', 'confirm_password')})
 
   constructor (
@@ -40,7 +39,6 @@ export class SignupComponent implements OnInit {
   public username_status: string = 'INVALID';
   public password_status: string = 'INVALID';
   public confirm_password_status: string = 'INVALID';
-  public isLoad: boolean = false;
 
   ngOnInit(): void {
     this.signUpForm.get('email').valueChanges.subscribe( () => {
@@ -64,25 +62,20 @@ export class SignupComponent implements OnInit {
     });
 
     const cookie: string = getCookie("signup") as string || "";
+    console.log(cookie)
     if (cookie === "") {
+      alert("No cookie signup")
     }
     else {
       try {
         const signup: GoogleSignUpResponse = JSON.parse(cookie);
-        if (signup.isSignUp) {
-          Swal.fire('Sign up using google successfully','','success').then(result => {
-            if(result.isConfirmed) {
-              this.storageService.setItem("signup_google_email", getCookie("signup_google_email")!);
-              window.location.href = "/choose-username";
-            }
-          })
-
-        }
+        if (signup.isSignUp)
+          alert("Signup using google OK")
         else
-          Swal.fire('A user with this email has already exist. \nPlease use a different email','','error')
+          alert("A user with this email have already exist")
       }
         catch (e) {
-          Swal.fire("Error signup using goolge. Please try to sign-up again",'','error')
+          alert("Error signup using goolge. Please try to signup again")
         }
       }
   }
@@ -92,41 +85,32 @@ export class SignupComponent implements OnInit {
       const username: string = this.signUpForm.value.username;
       const password: string = this.signUpForm.value.password;
       const email: string = this.signUpForm.value.email;
-      this.isLoad = true;
       const observable: Observable<UsernamePasswordSignUpResponse> = this.signUpService.UsernamePasswordSignUp(username, password, email);
       observable.subscribe({
         next: (response: UsernamePasswordSignUpResponse) => {
+          console.log(response)
+          console.log("IS SIGN_UP: " + response.isSignUp)
           if (response.isSignUp) {
-            // Swal.fire({
-            //   text: 'Sign up successfully',
-            //   icon: 'success'
-            // }).then((result)=>{
-            //   if(result.isConfirmed) {
-            //     this.storageService.setItem("signup-email", email);
-            //     this.router.navigate(["/check-confirm-email-passcode"])
-            //   }
-            // })
+            alert("Sign-up OK");
             this.storageService.setItem("signup-email", email);
-            this.router.navigate(["/check-sign-up-passcode"])
+            this.router.navigate(["/check-confirm-email-passcode"])
           }
           else {
-            if (response.emailError == 1) {
-              Swal.fire({
-                icon: "warning",
-                title: "An account with this email has already exist",
-              })
+            if (response.emailError) {
+              alert("Email already exist");
             }
-            if (response.usernameError == 1) {
-              Swal.fire("Username already exist",'','warning')
+            if (response.usernameError) {
+              alert("Username already exist");
             }
           }
-          this.isLoad = false;
         },
         error: (e: HttpErrorResponse) => {
-          Swal.fire("Error sign up. Please try again",'','error');
-          this.isLoad = false;
+          console.log("HttpServletResponse: " + e.error.message + "\n" + "ResponseEntity: " + e.error);
         }
       })
+    }
+    else {
+      alert("Make sure all field is follow requirements");
     }
   }
 
