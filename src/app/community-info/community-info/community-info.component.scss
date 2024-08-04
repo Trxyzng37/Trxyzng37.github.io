@@ -1,0 +1,115 @@
+:host {
+    background-color: var(--neutral);
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    font-size: 16px;
+    margin-left: 5px;
+    color: var(--secondary_color) !important;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.info_block {
+    padding: 15px 10px;
+} 
+
+#description {
+    word-wrap: break-word;
+}
+
+#join_block {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+#txt_community_name {
+    font-size: 17px;
+    width: 100%;
+}
+
+#btn_join {
+    width: 80px;
+    height: 100%;
+    padding: 0 20px;
+    background-color: var(--join);
+    border: 1px solid var(--secondary_color);
+    border-radius: 15px;
+    margin-right: 5px;
+    color: #ffffff !important;
+    font-weight: 500;
+    text-align: center;
+}
+
+#btn_join:hover {
+    background-color: rgb(231, 190, 136);
+}
+
+#block_container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#member_block {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#owner_block{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+}
+
+#avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.btn_block {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.btn {
+    height: 40px;
+    width: 100%;
+    min-width: 60px;
+    margin: 0 10px;
+    border-radius: 20px;
+    font-size: medium;
+    border: 2px solid var(--secondary_color);
+    background-color: var(--primary_background_color);
+    color: var(--secondary_color);
+}
+
+.btn:hover {
+    background-color: var(--neutral);
+}

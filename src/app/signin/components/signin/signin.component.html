@@ -1,25 +1,26 @@
+<div id="signin_container">
 <img id="main_logo" src="assets/icon/logo.png" alt="logo"/>
-<p class="p">Sign in to me</p>
+<b><h2 style="color: black !important;">Sign in to TRXYZNG</h2></b>
 <form [formGroup]="signInForm" (ngSubmit)="SignInFormSubmit()">
-    <label id="lbl_username" for="username">Username</label>
-    <input id="username" name="username" type="text" formControlName="username" required>
+    <label id="lbl_username" for="username" style="color: black !important;">Username</label>
+    <input id="username" name="username" type="text" formControlName="username" required style="color: black !important;">
     <div id="forgot_pass">
-        <label for="password">Password</label>
-        <a routerLink="/forgot-password">Forgot password?</a>
+        <label for="password" style="color: black !important;">Password</label>
+        <a routerLink="/forgot-password" style="color: var(--allow) !important;">Forgot password?</a>
     </div>
-    <input id="password" name="password" type="password" formControlName="password" required>
-    <button type="submit" id="btnSignIn">Login</button>
+    <input id="password" name="password" type="password" formControlName="password" required style="color: black !important;">
+    <button type="submit" id="btnSignIn" [disabled]="signInForm.status == 'INVALID'" style="color: black !important;">Login</button>
 </form>
 
-<p class="p">Or</p>
+<p style="font-size: 20px !important;" style="color: black !important;">Or</p>
 
 <button id="google_login" type="button" (click)="SignInUsingGoogle()">
     <img id="google_logo" src="assets/icon/google.png" alt="google logo"/>
-    <p>Signin using Google</p>
+    <p style="color: black !important;">Signin using Google</p>
 </button>
 
 <div id="create_account">
-    <p>New user?</p>
-    <a routerLink="/signup">Create an account</a>
+    <p style="font-size: 20px !important; color: black !important;">New user?</p>
+    <a routerLink="/signup" style="font-size: 20px !important; color: var(--allow) !important;">Create an account</a>
 </div>
-
+</div>

@@ -1,0 +1,17 @@
+
+<div class="container" [ngClass]="{'zoom_block': isZoom}" (click)="preventClick($event)">
+  <i class="pi pi-info-circle" id="btn_hide_caption"(click)="showCaption($event)" title="Turn caption on or off" *ngIf="!isZoom && (arr[index].caption.length > 0 || arr[index].link.length > 0) && !isViewPostPage"></i>
+  <button id="btn_right" type="button" (click)="right($event)" [ngStyle]="{'display':rightAllowed && arr.length != 1 ? 'block':'none'}"><i class="pi pi-angle-right"></i></button>
+  <button id="btn_left" type="button" (click)="left($event)" [ngStyle]="{'display':leftAllowed && arr.length != 1 ? 'block':'none'}"><i class="pi pi-angle-left"></i></button>
+  <img src="{{arr[index].data}}" (click)="zoomImage($event)"/>
+  <i id="btn_close_zoom" class="pi pi-times-circle" title="Close" (click)="closeImg($event)" *ngIf="isZoom"></i>
+  <i class="pi pi-info-circle" id="btn_caption"(click)="showCaption($event)" *ngIf="isZoom" title="Turn caption on or off"></i>
+  <div id="caption_link" *ngIf="((isCaptionOn && isZoom) || (isCaptionOn && !isViewPostPage)) && (!isViewPostPage || (isViewPostPage && isCaptionOn))" (click)="preventClick($event)" [ngStyle]="{'padding': isViewPostPage || isZoom || arr[index].caption.length > 0 || arr[index].link.length > 0 ? '5px 10px' : '0 10px'}">
+    <p id="caption" [ngStyle]="{'font-size': isViewPostPage || isZoom ? '16px':'13px'}">{{arr[index].caption}}</p>
+    <a id="link" href="{{arr[index].link}}" target="_blank" [ngStyle]="{'font-size': isViewPostPage || isZoom ? '16px':'13px', 'padding-bottom': isViewPostPage || isZoom ? '30px':'10px'}">{{arr[index].link}}</a>
+  </div>
+</div>
+<div id="caption_link_block" *ngIf="isViewPostPage" (click)="preventClick($event)" [ngStyle]="{'padding': arr[index].caption.length > 0 || arr[index].link.length > 0 ? '5px 10px' : '0'}">
+  <p id="caption_post">{{arr[index].caption}}</p>
+  <a id="link_post" href="{{arr[index].link}}" target="_blank">{{arr[index].link}}</a>
+</div>

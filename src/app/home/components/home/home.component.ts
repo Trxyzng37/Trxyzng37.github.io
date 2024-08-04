@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { AccessTokenService } from '../../../shared/services/access-token/access-token.service';
+import { StorageService } from 'src/app/shared/storage/storage.service';
+import { CheckRefreshTokenService } from 'src/app/shared/services/check-refresh-token/check-refresh-token.service';
 
 @Component({
   selector: 'app-home',
@@ -9,16 +11,24 @@ import { AccessTokenService } from '../../../shared/services/access-token/access
 })
 
 export class HomeComponent implements OnInit {
-  private access_token: string;
   public recent_status: string = 'down';
   public favorite_status: string = 'down';
+  public isCreateCommunityFormShow: boolean = false;
+  public isNavigationOpen: boolean = true;
 
-  constructor( 
-    private accessTokenService: AccessTokenService, 
-    private http: HttpClient,
-    private elementRef: ElementRef<HTMLElement>
-  ) {
-    this.access_token = "";
+  constructor ( 
+    private storageService: StorageService,
+    private checkRefreshTokenService: CheckRefreshTokenService
+  ) {}
+
+  ngOnInit(): void {
+    this.checkRefreshTokenService.runCheckRefreshTokenWithoutNotification();
+    if(window.innerWidth > 1200) {
+      this.isNavigationOpen = true;
+    }
+    else {
+      this.isNavigationOpen = false;
+    }
   }
 
   change_recent_status() {
@@ -31,30 +41,22 @@ export class HomeComponent implements OnInit {
     console.log(this.favorite_status)
   }
 
-  ngOnInit(): void {
-    // this.accessTokenService.get_access_token_from_server().subscribe({
-    //   next: (response) => {
-    //     this.accessTokenService.set_access_token(response);
-    //     this.access_token = this.accessTokenService.get_access_token();
-    //     alert("Get access_token from server: " + this.access_token);
-    //   },
-    //   error: (err) => {
-    //     console.log("Access token error:")
-    //     console.log(err)
-    //     alert("No access token")
-    //   }
-    // })
+  openCreateCommunityForm() {
+    this.isCreateCommunityFormShow = !this.isCreateCommunityFormShow;
   }
 
-  // send() {
-  //   let header: HttpHeaders = this.accessTokenService.set_access_token_header();
-  //   this.http.get("http://127.0.0.1:8080/check-access-token", {headers: header, observe: 'body', responseType: "text", withCredentials: true}).subscribe({
-  //     next: (response) => {
-  //       alert(response);
-  //     },
-  //     error: (e) => {
-  //       alert("Error\n"+e);
-  //     }
-  //   })
-  // }
+  openNavigation(event: any) {
+    this.isNavigationOpen = event.data;
+    // alert(this.isNavigationOpen)
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    if(event.target.innerWidth > 1200) {
+        this.isNavigationOpen = true;
+      }
+    else {
+      this.isNavigationOpen = false;
+    } 
+  }
 }

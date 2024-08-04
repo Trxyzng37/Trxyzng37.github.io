@@ -1,0 +1,32 @@
+<div class="info_block">
+    <div id="join_block">
+        <b id="txt_community_name">r/{{community_info.name}}</b>
+        <button id="btn_join" id="btn_join" *ngIf="!isCommunityPage && !isControlPostPage" (click)="joinCommunity($event)" [ngStyle]="{'background-color': isJoinCommunity ? 'var(--neutral)' : 'var(--join)', 'border': isJoinCommunity ? '1px solid var(--secondary_color)' : 'none'}">{{joinText}}</button>
+    </div>
+    <p id="description">{{community_info.description}}</p>
+    <div id="block_container" style="padding-top: 10px;">
+        <div id="member_block">
+            <b>{{presentationService.transformNumber(community_info.subscriber_count)}}</b>
+            <pre> Members</pre>
+        </div>
+    </div>
+</div>
+
+<div class="info_block" style="border-top: 1px solid var(--light_border)">
+    <b>Moderator</b>
+    <div id="owner_block">
+        <img id="avatar" src="{{userInfo.avatar}}">
+        <a href="/user/{{userInfo.username}}">u/{{userInfo.username}}</a>
+    </div>
+</div>
+
+<div class="btn_block" *ngIf="isOwner" (click)="editCommunity()">
+    <button class="btn">Edit community info</button>
+</div>
+
+<div class="btn_block" *ngIf="isOwner && community_info.scope == 1" (click)="controlPosts()">
+    <button class="btn" style="margin-bottom: 10px;">Control posts</button>
+</div>
+
+
+

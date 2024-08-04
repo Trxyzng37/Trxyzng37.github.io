@@ -1,0 +1,23 @@
+    
+<div class="post_img_description_block">
+    <div class="img_view">
+        <img src="{{img.data}}" draggable="false"/>
+    </div>
+    <div class="img_caption_block" [formGroup]="form">
+        <textarea id="txt_caption" maxlength="300" placeholder="Add a caption" 
+            (input)="onTextAreaInput($event)"
+            formControlName="caption"
+            value={{img.caption}}
+        >
+        </textarea>
+        <span class="character_count">{{characterCount}}/300</span>
+        <textarea id="txt_link" maxlength="300" placeholder="Add a link" 
+            (input)="onTextAreaInputLink($event)"
+            formControlName="link"
+            value={{img.link}}
+        >
+        </textarea>
+        <span class="character_count">{{characterCountLink}}/300</span>
+        <!-- <input class="txt_link" type="text" placeholder="Add a link"  value="{{img.link}}" formControlName="link" (input)="changeLink()"> -->
+    </div>
+</div>

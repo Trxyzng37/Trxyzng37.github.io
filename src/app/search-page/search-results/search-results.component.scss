@@ -1,0 +1,96 @@
+:host {
+    display: block;
+    width: 100%;
+    // background-color: aqua;
+}
+
+
+#select_block {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#select_block > p {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+#select_block > button {
+    width: auto;
+    height: auto;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-left: 10px;
+    background-color: var(--primary_background_color);
+    border: 1px solid var(--secondary_color);
+    color: var(--secondary_color) !important;
+}
+
+.selected_btn {
+    background-color: var(--neutral) !important;
+}
+
+//sort button
+#sort_container {
+    position: relative;
+    width: 100px;
+    height: auto;
+    align-self:flex-start;
+}
+
+#btn_sort {
+    width: auto;
+    height: 30px;
+    padding: 0 10px;
+    background-color: var(--primary_background_color);
+    border-radius: 20px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-wrap: nowrap;
+    margin-bottom: 10px;
+    color: var(--secondary_color) !important;
+}
+
+#btn_sort:hover {
+    background-color: var(--neutral);
+}
+
+#btn_sort > i {
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+#sort_option_block {
+    width: 110px;
+    height: auto;
+    position: absolute;
+    top: 35px;
+    left: 0;
+    z-index: 999;
+    box-shadow: var(--box_shadow_menu);
+}
+
+#sort_option_block > button {
+    height: 40px;
+    width: 100%;
+    text-align: left;
+    padding: 0 10px;
+    background-color: var(--neutral);
+    color: var(--secondary_color);
+}
+
+#sort_option_block > button:hover {
+    background-color: var(--primary_background_color);
+}
+
+#sort_option_block > b {
+    display: block;
+    height: 40px;
+    width: 100%;
+    text-align: left;
+    padding: 10px 10px;
+    background-color: var(--neutral);
+}

@@ -27,21 +27,23 @@ export class ConfirmEmailService {
 
   public checkConfirmEmailPasscode(passcode: number): Observable<PasscodeResponse> {
     const email: string = this.storageService.getItem("signup-email");
-    if (email === "")
-      alert("Empty email for confirm email");
     const pascode: number = passcode;
     const sendAt: Date = this.dateTimeService.getCurrentDateTime();
     const passcodeData: PassCodeRequest = new PassCodeRequest(email, pascode, sendAt);
     const body: string = JSON.stringify(passcodeData);
-    const header: HttpHeaders = new HttpHeaders();
-    return this.postService.post(this.endpoint, header, body, false);
+    let header: HttpHeaders = new HttpHeaders();
+    header = header.append("Accept", 'application/json');
+    header = header.append('Content-Type', 'application/json');
+    return this.postService.post(this.endpoint, header, body, true);
   }
 
-  public reSendPasscode(email: string): Observable<ResendEmailPasscodeResponse> {
-    const endpoint: string = "/resend-confirm-email-passcode";
+  public reSendPasscode(enpoint: string, email: string): Observable<ResendEmailPasscodeResponse> {
+    // const endpoint: string = "/resend-confirm-email-passcode";
     const resendEmailPasscodeRequest: ResendEmailPasscodeRequest = new ResendEmailPasscodeRequest(email);
     const requestBody: string = JSON.stringify(resendEmailPasscodeRequest);
-    const header: HttpHeaders = new HttpHeaders();
-    return this.postService.post(endpoint, header, requestBody, false);
+    let header: HttpHeaders = new HttpHeaders();
+    header = header.append("Accept", 'application/json');
+    header = header.append('Content-Type', 'application/json');
+    return this.postService.post(enpoint, header, requestBody, true);
   }
 }

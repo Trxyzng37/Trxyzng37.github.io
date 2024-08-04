@@ -1,0 +1,100 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    --btn_width: 75px;
+    --btn_height: 35px;
+    margin-bottom: 50px;
+}
+
+
+app-post {
+    width: 100%;
+}
+
+#comment_editor_block {
+    width: calc(100% - 40px);
+    height: auto;
+    position: relative;
+    margin-bottom: calc(var(--btn_height) * 2);
+}
+
+#btn_comment_block {
+    width: -moz-fit-content;
+    width: fit-content;
+    height: auto;
+    position: absolute;
+    bottom: calc(-var(--btn_height));
+    right: 0px;
+    margin-top: 5px;
+}
+
+#btn_comment_block > * {
+    text-align: center;
+    border-radius: 20px;
+    margin-left: 10px;
+    font-size: 14px;
+    width: auto;
+    padding: 0 15px;
+    height: var(--btn_height);
+    border: 1px solid var(--secondary_color);
+    color: var(--secondary_color);
+}
+
+#btn_cancel_comment {
+    background-color: var(--primary_background_color);
+}
+
+#btn_submit_comment {
+    background-color: var(--allow);
+}
+
+// #comment_block {
+//     width: calc(100% - 40px);
+//     height: 200px;
+//     background-color: aqua;
+//     margin: 20px 0 50px 0;
+// }
+
+comment {
+    width: 100%;
+}
+
+.comment_container {
+    width: calc(100% - 40px);
+    height: auto;
+}
+
+app-comment {
+    width: 100%;
+}
+
+#no_comment_block {
+    margin: 0 50px;
+    font-size: 20px;
+}
+
+#deleted_post_block {
+    width: 50vw;
+    height: auto;
+    text-align: center;
+}
+
+#not_allow_block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 150px;
+    text-align: center;
+}
+
+#not_allow_block > button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: var(--neutral);
+    box-shadow: var(--box_shadow);
+    margin-top: 20px;
+}

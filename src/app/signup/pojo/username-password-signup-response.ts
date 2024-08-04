@@ -1,9 +1,9 @@
 export class UsernamePasswordSignUpResponse {
-    public isSignUp: boolean;
-    public usernameError: boolean;
-    public emailError: boolean;
+    public isSignUp: number;
+    public usernameError: number;
+    public emailError: number;
 
-    public constructor(isSignUp: boolean, usernameError: boolean, emailError: boolean) {
+    public constructor(isSignUp: number, usernameError: number, emailError: number) {
         this.isSignUp = isSignUp;
         this.usernameError = usernameError;
         this.emailError = emailError;

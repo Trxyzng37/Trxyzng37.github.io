@@ -1,0 +1,21 @@
+
+<div id="post_title_block">
+    <textarea id="input_post_title" maxlength="300" required placeholder="Title" (input)="inputTitle($event)" [value]="edit_title"></textarea>
+    <span id="character_count">{{characterCount}}/300</span>
+</div>
+
+<div id="post_link_block">
+    <textarea (input)="inputLink($event)" placeholder="Enter a full link start with http or https" [value]="edit_content"></textarea>
+</div>
+
+<div id="btn_comment_block">
+    <button id="btn_cancel_comment" type="button" (click)="cancelEdit()">Cancel</button>
+    <button id="btn_edit_comment" type="button" (click)="editPost()" [disabled]="allowSubmit">Edit</button>
+</div>
+
+<div id="load_container" *ngIf="isLoad">
+    <div id="load_block">
+        <div class="loader"></div>
+        <b style="padding-top: 10px;font-size: 20px;">Edit post. Please wait...</b>
+    </div>
+</div>

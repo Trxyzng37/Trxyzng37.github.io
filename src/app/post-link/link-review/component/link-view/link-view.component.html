@@ -1,0 +1,20 @@
+
+
+<!-- <div id="video_container" *ngIf="isYoutubeLink">
+    <h3>{{title}}</h3>
+    <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(data.link)" allowfullscreen>
+    </iframe>
+</div> -->
+
+<div id="link_container" [ngStyle]="{'display': !isYoutubeLink ? 'flex' : 'none'}">
+    <div [ngStyle]="{'width': data.image.length == 0 ? '100%':'calc(100% - 150px)'}">
+        <h3>{{title}}</h3>
+        <a [ngStyle]="{'text-overflow': data.image.length == 0 ? 'string':'ellipsis', 'white-space': data.image.length == 0 ? 'normal':'nowrap', 'word-wrap': data.image.length == 0 ? 'break-word':'hidden'}"  [href]="data.link" target="_blank">{{data.link}}</a>
+    </div>
+    <a id="link_img" [href]="data.link" target="_blank" (click)="preventClick($event)" *ngIf="data.image.length != 0">
+        <img [src]="data.image">
+        <div>
+            <i class="pi pi-external-link"></i>
+        </div>
+    </a>
+</div>

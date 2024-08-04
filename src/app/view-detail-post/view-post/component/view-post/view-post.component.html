@@ -1,0 +1,57 @@
+
+<div id="post_block" *ngIf="isAllow || isAuthor || isCommunityOwner || isDeleted"          
+>
+    <nav id="community_bar">
+        <div id="community_block">
+            <back-button></back-button>
+            <a id="community_link" href="r/{{post.community_id}}">
+                <img id="community_icon" src="{{communityIcon}}" alt="community_icon"/>
+            </a>
+            <div id="link_date_block"> 
+                <a id="community_name" style="font-weight: bold;" href="r/{{post.community_id}}">r/{{communityName}}  </a>
+                <i style="font-weight: bold;">·</i>
+                <span style="font-size: 13px;"> {{shownDate}}</span>
+            </div>
+            <a id="username" href="/user/{{username}}">{{username}}</a>
+        </div>
+        <div id="option_block">
+            <button class="btn" id="btn_join" type="button" style="background-color: var(--allow);" *ngIf="isCommunityOwner && !isAllow && !isDeleted" (click)="allowPost($event)">Allow</button>
+            <button class="btn" id="btn_join" type="button" style="background-color: var(--delete);" *ngIf="isCommunityOwner && !isDeleted" (click)="notAllowPost($event)">Delete</button>
+            <button id="btn_option" type="button" title="Options" (click)="openOptionMenu($event)"><i class="pi pi-ellipsis-h"></i></button>
+        </div>
+        <div id="dropdown_option_block" [ngStyle]="{'display': isOptionMenuOpen ? 'block':'none'}">
+            <button id="btn_edit" *ngIf="isAuthor" (click)="editPost($event)"><i class="pi pi-pencil"></i><p>Edit</p></button>
+            <button *ngIf="isAuthor" (click)="deletePost()"><i class="pi pi-trash"></i><p>Delete</p></button>
+            <button id="btn_save" (click)="savePost($event)"><i class="pi" [ngClass]="saved ? 'pi-bookmark-fill':'pi-bookmark'"></i><p>{{savedText}}</p></button>
+        </div>
+    </nav>
+
+    <nav id="main_content">
+        <h2 style="margin-bottom: 16px;" [ngStyle]="{'display': type=='link'?'none':'block'}">{{title}}</h2>
+        <app-editor-view *ngIf="type=='editor'"  [content]="content"></app-editor-view>
+        <app-image-view *ngIf="type=='img'" [content]="content"></app-image-view>
+        <app-link-view *ngIf="type=='link'" [title]="title" [content]="content"></app-link-view>
+        <app-video-view *ngIf="type=='video'" [content]="content"></app-video-view>
+    </nav>
+
+    <nav id="footer">
+        <div id="block_vote" class="block_vote" [ngClass]="{'upvote': voteType === 'upvote', 'downvote': voteType === 'downvote', 'normal': voteType === 'none'}" [ngStyle]="{'opacity': isDeleted ? '0.6' : '1'}">
+            <button id="btn_upvote" type="button" (click)="votePost($event, 'upvote')" [ngClass]="{'upvote': voteType === 'upvote', 'downvote': voteType === 'downvote', 'normal': voteType === 'none'}" [disabled]="isDeleted"><img [attr.src]="voteType === 'upvote' ? upvote_fill : voteImgService.upvote" /></button>
+            <p id="vote_count">{{presentationService.transformNumber(vote)}}</p>
+            <button id="btn_downvote" type="button" (click)="votePost($event, 'downvote')" [ngClass]="{'upvote': voteType === 'upvote', 'downvote': voteType === 'downvote', 'normal': voteType === 'none'}" [disabled]="isDeleted"><img [attr.src]="voteType === 'downvote' ? downvote_fill : voteImgService.downvote" /></button>
+        </div>
+        <button id="btn_comment" type="button" onclick="document.getElementById('comment').scrollIntoView();" [disabled]="isDeleted">
+            <i class="pi pi-comment"></i>
+            <p id="comment_count">{{presentationService.transformNumber(commentCount)}}</p>
+        </button> 
+        <!-- <button id="btn_share" type="button" [disabled]="isDeleted">
+            <i class="pi pi-upload"></i>
+            <p>Share</p>
+        </button> -->
+    </nav>
+</div>
+
+
+
+
+

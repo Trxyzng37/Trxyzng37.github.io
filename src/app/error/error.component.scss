@@ -4,8 +4,10 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: var(--primary_background_color);
 }
 
 h1 {
     font-weight: 400;
+    color: var(--secondary_color);
 }

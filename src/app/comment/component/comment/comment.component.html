@@ -1,0 +1,51 @@
+
+<div class="container" [style.margin-left]="margin" [ngStyle]="{'margin-top': commentData.level === 0 ? '10px' : '0'}">
+    <div id="header" (click)="showComment($event)">
+        <img *ngIf="isShown" [attr.src]="commentData.user_icon" />
+        <i class="pi pi-plus-circle" id="img_close_comment" *ngIf="!isShown"></i>
+        <div id="info_block">
+            <p>{{commentData.username}}</p>
+            <pre> • </pre>
+            <p>{{shownDate}}</p>
+        </div>
+    </div>
+    
+    <div id="comment_content" *ngIf="isShown" [innerHTML]=sanitizer.bypassSecurityTrustHtml(previousContent)>
+    </div>
+
+    <div id="footer" *ngIf="isShown && !isUserPage">
+        <div id="block_vote" class="block_vote" [ngClass]="{'upvote': voteType === 'upvote', 'downvote': voteType === 'downvote', 'normal': voteType === 'none'}">
+            <button id="btn_upvote" type="button" (click)="voteComment($event, 'upvote')" [ngClass]="{'upvote': voteType === 'upvote', 'downvote': voteType === 'downvote', 'normal': voteType === 'none'}" [disabled]="isDeleted"><img [attr.src]="voteType === 'upvote' ? upvote_fill : voteImgService.upvote" /></button>
+            <p id="vote_count">{{presentationService.transformNumber(commentData.vote)}}</p>
+            <button id="btn_downvote" type="button" (click)="voteComment($event, 'downvote')" [ngClass]="{'upvote': voteType === 'upvote', 'downvote': voteType === 'downvote', 'normal': voteType === 'none'}" [disabled]="isDeleted"><img [attr.src]="voteType === 'downvote' ? downvote_fill : voteImgService.downvote" /></button>
+        </div>
+        <button class="footer_btn" type="button" (click)="reply()" *ngIf="isReplyAllowed && !isDeleted">
+            <i class="pi pi-comment"></i>
+            <pre>Reply</pre>
+        </button>
+        <button class="footer_btn" id="btn_edit" type="button" (click)="showEditComment()" *ngIf="isEditAllowed && !isDeleted">
+            <i class="pi pi-pencil"> </i>
+            <pre>Edit</pre>
+        </button>
+        <button class="footer_btn" type="button" (click)="deleteComment()" *ngIf="(isDeleteAllowed && !isDeleted) || (isCommunityOwner && !isDeleted)">
+            <i class="pi pi-trash"> </i>
+            <pre>Delete</pre>
+        </button>
+    </div>
+
+    <div id="comment_editor_block" [ngStyle]="{'display': isEditorShow && isShown ? 'block':'none'}">
+        <editor
+            [init]="editorSettings"
+            (onSelectionChange)="onContentChanged($event)"
+            (onChange)="onContentChanged($event)"
+            style="width: calc(100%);"
+        >
+        </editor>
+        <div id="btn_comment_block">
+            <button id="btn_cancel_comment" type="button" (click)="cancelComment()">Cancel</button>
+            <button id="btn_submit_comment" type="button" (click)="createComment()" *ngIf="isReplyAllowed">Comment</button>
+            <button id="btn_edit_comment" type="button" (click)="sendEditComment()" *ngIf="isEditAllowed">Edit</button>
+        </div>
+    </div>
+</div>
+

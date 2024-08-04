@@ -1,0 +1,144 @@
+
+:host {
+    // height: 100%;
+    // width: 100%;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
+    // background-color: var(--primary_background_color);
+}
+
+#container {
+    width: 100%;
+    min-width: 450px;
+    background-color: var(--neutral);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+#btn_back {
+    width: 30px;
+    aspect-ratio: 1/1;
+    background-image: url("../../../assets/icon/back.png");
+    background-size: contain;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    border-radius: 50%;
+}
+
+label {
+    align-self: flex-start;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+input, textarea {
+    margin-bottom: 20px;
+    border: 1px solid black;
+    color: black;
+}
+
+#input_username {
+    width: 100%;
+    height: auto;
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+#input_username:hover {
+    cursor: not-allowed;
+}
+
+//description
+#post_title_block {
+    align-self: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#input_post_title {
+    width: 100%;
+    height: 48px;
+    text-align: left;
+    padding-top: 5px;
+    padding-right: 55px;
+    padding-bottom: 8px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+    resize: none;
+}
+
+
+#character_count {
+    position: relative;
+    bottom: 42px;
+    right: 5px;
+    align-self: flex-end;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--secondary_color) !important;
+}
+
+#img_avatar {
+    width: 100px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+//upload img
+#input_upload_img, #input_upload_banner {
+    width: 0px;
+    height: 0px;
+    display: none;
+}
+
+#btn_upload_img {
+    width: auto;
+    height: 40px;
+    text-align: center;
+    display: inline-block;
+    background-color: var(--allow);
+    border: 2px solid var(--secondary_color);
+    padding: 0 20px;
+    border-radius: 20px;
+    vertical-align: bottom;
+    margin: 10px 0;
+    margin-bottom: 30px;
+}
+
+#btn_block {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.btn_submit {
+    width: auto;
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    border: 1px solid var(--secondary_color);
+}
+
+.btn_submit:first-child {
+    margin-right: 10px;
+    background-color: var(--neutral);
+}
+
+.btn_submit:last-child {
+    background-color: var(--allow);
+}

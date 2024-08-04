@@ -1,0 +1,19 @@
+<div id="container">
+    <button id="btn_back" (click)="cancel()"></button>
+    <h2 style="margin-bottom: 20px;">Edit User profile</h2>
+    <label for="input_username">Username</label>
+    <input id="input_username" type="text" [value]="userInfo.username" disabled="true"/>
+    <label for="post_title_block">About</label>
+    <div id="post_title_block">
+        <textarea id="input_post_title" maxlength="200" required placeholder="Optional" (input)="onInputDescription($event)" [value]="userInfo.description"></textarea>
+        <span id="character_count" style="color: black;">{{characterCount}}/200</span>
+    </div>  
+    <label for="post_title_block">Avatar</label>
+    <img id="img_avatar" [src]="userInfo.avatar">
+    <input id="input_upload_img" type="file" accept="image/*" (change)="upLoadImg($event)" #input_img>
+    <button id="btn_upload_img" type="button" (click)="input_img.click()">Upload your community avatar</button>
+    <div id="btn_block">
+        <button class="btn_submit" type="button" (click)="cancel()">Cancel</button>
+        <button class="btn_submit" type="button" (click)="submit()">Save</button>
+    </div>
+</div>

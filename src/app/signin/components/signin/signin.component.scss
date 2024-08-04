@@ -1,21 +1,32 @@
 
 :host {
+    --signin_length: 300px;
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #ffffff;
+}
+
+#signin_container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // width: 100%;
-    // height: 100%;
-    --signin_length: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    top: 80px;
+    padding-bottom: 30px;
 }
 
-:host > * {
+#signin_container > * {
     margin: 10px 0px;
 }
 
 #main_logo {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    aspect-ratio: 1/1;
 }
 
 .p {
@@ -25,14 +36,14 @@
 
 form {
     width: var(--signin_length);
-    height: 200px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px blue solid;
+    border: 1px solid black;
     border-radius: 5px;
-    background-color: aliceblue;
+    background-color: #ffffff;
 }
 
 form > * {
@@ -44,11 +55,12 @@ form > input[type=text], input[type=password] {
     border: 1px solid black;
     border-radius: 5px;
     width: 90%;
-    height: 25px;
+    height: auto;
     margin-bottom: 10px;
+    padding: 5px;
 }
 
-input[type=text]:focus, input[type=password]:focus {
+input[type=password]:focus, #username:focus {
     border: 2px solid black;
 }
 
@@ -69,26 +81,23 @@ input[type=text]:focus, input[type=password]:focus {
 a {
     text-decoration: none;
     padding-left: 5px;
-    color: blue;
+    color: blue !important;
+    font-size: 16px;
 }
 
 p {
-    font-size: medium;
-}
-
-input:focus {
-    border: 2px solid black;
-    border-radius: 5px;
+    font-size: 16px !important;
 }
 
 #btnSignIn {
-    background-color: #92e596;
-    font-size: medium;
-    width: 70px;
-    height: 30px;
-    border: 2px black solid;
-    border-radius: 5px;
-    position: relative;
+    background-color: var(--allow);
+    font-size: 16px;
+    width: auto;
+    height: auto;
+    padding: 5px 20px;
+    border: 1px black solid;
+    border-radius: 20px;
+    margin-bottom: 10px;
 }
 
 #google_login {
@@ -98,22 +107,26 @@ input:focus {
     height: 50px;
     justify-content: center;
     align-items: center;
-    border: 1px blue solid;
+    border: 1px black solid;
     border-radius: 5px;
-    background-color: aliceblue;
+    background-color: #ffffff;
 }
 
 #google_login > * {
     padding: 5px 5px;
 }
 
+#google_login > p {
+    font-size: 18px !important;
+}
+
 #google_login:hover {
-    background-color: aqua;
+    background-color: var(--allow);
 }
 
 #google_logo {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    aspect-ratio: 1/1;
 }
 
 #create_account {
@@ -130,7 +143,7 @@ button {
 
 #login-success {
     position: absolute;
-    background-color: #42A948;
+    background-color: var(--allow);
     z-index: 10;
 }
 
@@ -141,7 +154,7 @@ button {
     align-items: center;
     width: 200px;
     height: 200px;
-    background-color: #42A948;
+    background-color: var(--allow);
     position: absolute;
 }
 

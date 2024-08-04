@@ -9,6 +9,9 @@ import { Observable } from 'rxjs';
 import { GoogleSignInResponse } from '../../pojo/google-signin-response';
 import { UsernamePasswordSignInResponse } from '../../pojo/username-password-signin-response';
 import { StorageService } from 'src/app/shared/storage/storage.service';
+import Swal from 'sweetalert2';
+import { RecentVisitService } from 'src/app/shared/services/recent-visit/recent-visit.service';
+import { DarkModeService } from 'src/app/shared/services/dark-mode/dark-mode.service';
 
 @Component({
   selector: 'app-signin',
@@ -21,7 +24,9 @@ export class SigninComponent implements OnInit {
     private usernamePasswordService: UsernamePasswordService, 
     private serverUrlService: ServerUrlService,
     private router: Router,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private recentVisitService: RecentVisitService,
+    private darkmodeService: DarkModeService
   ) {}
 
   private serverUrl: string = this.serverUrlService.getUrl();
@@ -33,18 +38,25 @@ export class SigninComponent implements OnInit {
   //when component first init
   ngOnInit(): void {
     const cookie: string = getCookie("GoogleSignIn") as string || "";
+    const uid: number = getCookie("uid") == "0" ? 0 : Number.parseInt(getCookie("uid") as string || '0');
     if (cookie === "")  
-      alert("No cookie signin")
+      console.log("No cookie signin")
     else {
       try {
         const signin: GoogleSignInResponse = JSON.parse(cookie);
-        if (signin.isGoogleSignIn)
-          alert("signin using google OK")
+        if (signin.isGoogleSignIn) {
+          this.storageService.setItem("uid", uid.toString());
+          this.onSignIn();
+        }
         else
-          alert("signin using google FAIL")
+          Swal.fire({
+            title: "No account with this email",
+            icon: "error",
+            footer: "<b><a href='/signup'>Click here to create an account</a></b>"
+          })
       }
         catch (e) {
-          alert("Error signin using goolge. Please try signin again")
+          Swal.fire("Error signin using google. Please try again.",'','error')
         }
       }
     }
@@ -64,18 +76,35 @@ export class SigninComponent implements OnInit {
       observable.subscribe({
         next: (response: UsernamePasswordSignInResponse) => {
           if (response.isSignIn) {
-            alert("login ok using username-password");
-            this.storageService.setItem("isSignIn", "true");
+            // this.storageService.setItem("username", this.signInForm.value.username);
+            this.storageService.setItem('uid', response.uid.toString());
+            this.onSignIn();
           }
           if (response.passwordError) {
-            alert("Wrong password for user");
+            Swal.fire("Wrong username or password",'','warning');
           }
         },
         error: (e: HttpErrorResponse) => {
-          console.log("HttpServletResponse: " + e.error.message + "\n" + "ResponseEntity: " + e.error);
+          Swal.fire("Error sign in. Please try again",'','error');
         }
       })
     }
+  }
+
+  onSignIn() {
+    const uid = this.storageService.getItem("uid") == "" ? 0 : Number.parseInt(this.storageService.getItem("uid"));
+    this.darkmodeService.useDarkMode();
+    const recent_posts: number[] = this.storageService.getItem("recent_posts") == "" ? [] : JSON.parse("[" + this.storageService.getItem("recent_posts") + "]");
+    for(let post of recent_posts) {
+      this.recentVisitService.setRecentVisit("/set-recent-visit-post", uid, post).subscribe();
+    }
+    this.storageService.removeItem("recent_posts");
+    const recent_communities: number[] = this.storageService.getItem("recent_communities") == "" ? [] : JSON.parse("[" + this.storageService.getItem("recent_communities") + "]");
+    for(let community of recent_communities) {
+      this.recentVisitService.setRecentVisit("/set-recent-visit-community", uid, community).subscribe();
+    }
+    this.storageService.removeItem("recent_communities");
+    window.location.href = "/home";
   }
 }
 

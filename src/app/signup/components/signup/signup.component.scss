@@ -1,18 +1,30 @@
 
 :host {
+    height: 100vh;
+    width: 100vw;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 30px;
+    background-color: #ffffff;
+}
+
+#signup_container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
+    position: relative;
+    top: 15px;
 }
 
-:host > * {
+#signup_container > * {
     margin: 10px 0px;
 }
 
 #main_logo {
-    width: 70px;
-    height: 70px;
+    height: 60px;
+    aspect-ratio: 1/1;
 }
 
 .p {
@@ -27,9 +39,9 @@ form {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px blue solid;
+    border: 1px black solid;
     border-radius: 5px;
-    background-color: aliceblue;
+    background-color: #ffffff;
 }
 
 form > p {
@@ -40,16 +52,18 @@ form > p {
     font-size: 13px;
 }
 
-form > input[type=text] {
+form > input {
     margin: 5px 0px 0px 0px;
     border: 1px solid black;
     border-radius: 5px;
     width: 90%;
-    height: 25px;
+    height: auto;
+    padding: 5px 0;
     margin-bottom: 10px;
+    padding-left: 5px;
 }
 
-input[type=text]:focus {
+input[type=text]:focus, input[type=password]:focus {
     border: 2px solid black;
 }
 
@@ -61,24 +75,24 @@ label {
 
 a {
     text-decoration: none;
-    color: blue;
+    color: blue !important;
     margin-left: 5px;
 }
 
 #btnSignUp {
-    background-color: #92e596;
     font-size: medium;
-    width: 70px;
-    height: 30px;
-    border: 2px black solid;
-    border-radius: 5px;
-    // position: relative;
+    width: auto;
+    height: auto;
+    padding: 5px 20px;
+    border: 1px black solid;
+    border-radius: 20px;
     margin-top: 5px;
     margin-bottom: 10px;
+    background-color: var(--allow);
 }
 
 #txt_GoogleSignUp {
-    font-size: medium;
+    font-size: 18px;
 }
 
 #google_login {
@@ -88,9 +102,9 @@ a {
     height: 50px;
     justify-content: center;
     align-items: center;
-    border: 1px blue solid;
+    border: 1px black solid;
     border-radius: 5px;
-    background-color: aliceblue;
+    background-color: #ffffff;
 }
 
 #google_login > * {
@@ -98,7 +112,7 @@ a {
 }
 
 #google_login:hover {
-    background-color: aqua;
+    background-color: var(--allow);
 }
 
 #google_logo {
@@ -109,6 +123,7 @@ a {
 #signin {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
 }
 
 #lbl_email {

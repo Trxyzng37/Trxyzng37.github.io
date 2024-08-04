@@ -18,6 +18,6 @@ export class EmailExistService {
     const parameter: string ="email=" + email; 
     const endpointWithParameter = this.endpoint + "?" + parameter;
     const header: HttpHeaders = new HttpHeaders();
-    return this.getService.get(endpointWithParameter, header, false);
+    return this.getService.get(endpointWithParameter, header, true);
   }
 }

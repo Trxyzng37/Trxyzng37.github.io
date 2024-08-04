@@ -1,13 +1,23 @@
-
-<form [formGroup]="confirmEmailPasscodeForm" (ngSubmit)="confirmEmailPasscodeFormSubmit()">
-    <p>A pass-code had been send to the email address: <b>{{email}}</b></p>
-    <label id="lbl_passcode" for="input_passcode">Enter pass-code</label>
-    <input id="input_passcode" name="passcode" type="text" formControlName="passcode" required>
-    <button type="submit" id="btn_submit">Check pass-code</button>
-</form>
-
-<div id="div_resend">
-    <p>Can not find passcode ?</p>
-    <button id="btn_resend_passcode" type="button" (click)="reSendPasscode()">Re-send</button>
+<img id="main_logo" src="assets/icon/logo.png" alt="logo"/>
+<div id="confirm_container">
+    <form [formGroup]="confirmEmailPasscodeForm" (ngSubmit)="confirmEmailPasscodeFormSubmit()">
+        <h2>Thanks for signing up</h2>
+        <p>A 6-digits pass-code had been send to the email address:</p>
+        <b>{{email}}</b>
+        <label id="lbl_passcode" for="input_passcode">Enter pass-code</label>
+        <input id="input_passcode" name="passcode" type="text" [maxLength]="6" formControlName="passcode" required>
+        <button type="submit" id="btn_submit" [disabled]="confirmEmailPasscodeForm.status === 'INVALID'">Check passcode</button>
+    </form>
+    
+    <div id="div_resend">
+        <p>Problem with passcode?</p>
+        <button id="btn_resend_passcode" type="button" (click)="reSendPasscode()" [disabled]="resend_count > 0">Re-send <p style="display: inline;" *ngIf="resend_count > 0">({{resend_count}}s)</p></button>
+    </div>
+</div>
+<div id="load_container" *ngIf="isLoad">
+    <div id="load_block">
+        <div class="loader"></div>
+        <b style="padding-top: 10px;font-size: 20px;">Create new passcode. Please wait...</b>
+    </div>
 </div>
 

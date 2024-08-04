@@ -1,9 +1,35 @@
-
-<div id="post_list">
-    <div id="outlet">
-        <router-outlet>
-        </router-outlet>
+<div id="h_container" *ngIf="isCommunityPage || isControlPage">
+    <div id="header_container">
+        <div id="banner_container">
+            <img id="img_banner" src="{{community.banner}}" *ngIf="community.banner != null">
+            <img id="img_banner" src="../../../../assets/banner/default_banner.jpg" *ngIf="community.banner == null">
+        </div>
+        <div id="button_container">
+            <p id="community_name" title="r/{{community.name}}">r/{{community.name}}</p>
+            <div id="button_block">
+                <button class="btn" id="btn_create_post" (click)="createPost()"><i class="pi pi-plus"></i><p class="txt_btn">Create a post</p></button>
+                <button class="btn txt_btn" id="btn_join" [ngStyle]="{'background-color': isJoinCommunity ? 'var(--neutral)' : 'var(--join)', 'border': isJoinCommunity ? '1px solid black' : 'none'}" (click)="joinCommunity()">{{joinText}}</button>
+            </div>
+        </div>
+        <img id="img_avatar" src="{{community.avatar}}">
     </div>
 </div>
 
+<div id="control_block" *ngIf="isControlPage">
+    <h3>Select which post you want to allow in your community</h3>
+</div>
+
+<div id="outlet">
+    <router-outlet>
+    </router-outlet>
+</div>
+
+<app-recent-visited-post *ngIf="!isCommunityPage && !isViewPostPage && !isControlPage && !isUserPage && !isEditCommunityPage && !isUserSettingPage"></app-recent-visited-post>
+<div id="community_info_block" *ngIf="isCommunityPage || isViewPostPage || isControlPage || isEditCommunityPage" >
+    <community-info [community_info]="community"></community-info>
+</div>
+
+<div id="user_info_block" *ngIf="isUserPage || isUserSettingPage">
+    <user-info></user-info>
+</div>
 

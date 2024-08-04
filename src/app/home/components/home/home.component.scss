@@ -1,32 +1,31 @@
 :host {
     height: 100%;
     width: 100%;
-    // display: flex;
-    // flex-direction: column;
-    // overflow: hidden;
+    position: relative;
+    // overflow-x: hidden;
 }
 
 #outlet {
-    width: calc(80vw - var(--margin_home));
+    width: calc(100% - 2vw - 300px);
     height: calc(100vh - var(--header_size));
     position: relative;
     top: 50px;
-    left: calc(20vw + var(--margin_home));
+    left: calc(300px + 2vw);
 }
 
 app-navigation-bar {
     position: fixed;
     height: calc(100vh - var(--header_size));
     left: 0;
-    width: 20vw;
+    width: 300px;
     top: var(--header_size);
     left: var(--margin_home);
+    border-right: 1px solid var(--secondary_color);
 }
 
 app-recent-visited-post {
     position: fixed;
     height: calc(100vh - var(--header_size));
-    right: 0;
     width: 21vw;
     top: var(--header_size);
     right: var(--margin_home);
@@ -36,3 +35,50 @@ app-navigation-bar:hover, app-recent-visited-post:hover {
     overflow-y: auto;
 }
 
+
+//create-community 
+#create_community_container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color: #000000, $alpha: 0.85);
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+create-community {
+    height: 90vh;
+    min-height: 400px;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+    border-radius: 10px;
+    // overflow-x: hidden;
+}
+
+@media only screen and (max-width: 1200px) {
+    app-navigation-bar {
+        position: fixed;
+        left: 0;
+        width: 300px;
+        z-index: 999;
+        background-color: var(--primary_background_color);
+        display: none;
+    }
+    #outlet {
+        left: 0;
+        width: 100%;
+    }
+  }
+
+@media only screen and (min-width: 1200px) {  
+    app-navigation-bar {
+        display: none;
+    }
+}

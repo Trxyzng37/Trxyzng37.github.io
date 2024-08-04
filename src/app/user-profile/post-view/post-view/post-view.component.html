@@ -1,0 +1,22 @@
+
+<div *ngFor="let post of posts">
+    <nav id="community_bar">
+        <div id="community_block">
+            <a id="community_link" href="/r/{{post.community_id}}" (click)="stopPropagation($event)">
+                <img id="community_icon" src="{{post.community_icon}}" alt="community_icon"/>
+            </a>
+            <div id="link_date_block"> 
+                <a href="/r/{{post.community_id}}" style="font-weight: bold;"(click)="stopPropagation($event)">r/{{communityName}}  </a>
+                <i style="font-weight: bold;">·</i>
+                <span style="font-size: 13px;"> {{shownDate}}</span>
+            </div>
+        </div>
+    </nav>
+    <nav id="main_content">
+        <h3 [ngStyle]="{'display': post.type=='link'?'none':'block'}">{{title}}</h3>
+        <app-editor-view *ngIf="post.type=='editor'"  [content]="post.content" ></app-editor-view>
+        <app-image-view *ngIf="post.type=='img'" [content]="post.content" ></app-image-view>
+        <app-link-view *ngIf="post.type=='link'" [title]="post.title" [content]="post.content"></app-link-view>
+    </nav>
+</div>
+

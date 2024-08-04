@@ -1,0 +1,53 @@
+
+<app-post
+    [post]="post"
+    [post_id]="post.post_id"
+    [type]="post.type"
+    [communityName]="post.community_name"
+    [uid]="post.uid"
+    [username]="post.username"
+    [title]="post.title"
+    [content]="post.content"
+    [created_at]="post.created_at"
+    [vote]="post.vote"
+    [communityIcon]="post.community_icon"
+    [commentCount]="commentResults.length"
+>
+</app-post>
+
+<div id="comment_editor_block" *ngIf="!isDeleted && (isAllow || isAuthor || isCommunityOwner)"> 
+    <editor
+        [init]="editorSettings"
+        (onSelectionChange)="onContentChanged($event)"
+        style="width: calc(100%);"
+    >
+    </editor>
+    <div id="btn_comment_block"> 
+        <button id="btn_cancel_comment" type="button" (click)="cancelComment()">Cancel</button>
+        <button id="btn_submit_comment" type="button" (click)="createComment($event)">Comment</button>
+    </div>
+</div>
+
+<p id="no_comment_block" *ngIf="commentResults.length === 0 && !isDeleted && (isAllow || isAuthor || isCommunityOwner)">No comment found for this post</p>
+
+<div class="comment_container" *ngIf="!isDeleted && (isAllow || isAuthor || isCommunityOwner)">
+    <div class="comment_container" *ngFor="let comment of commentResults; let i=index">
+        <app-comment id="comment"
+        *ngIf="!isDeleted"
+        [commentData]="comment"
+        [postId]="postId"
+        [isCommunityOwner]="isCommunityOwner"
+        (commentModified)="reloadComment($event)"
+        [ngStyle]="{'padding-left': comment.level*30+'px', 'width': width[i], 'display': 'block', 'margin-top': comment.level == 0 ? '30px' : 0}"
+        >
+        </app-comment>
+    </div>
+</div>
+
+<div id="not_allow_block" *ngIf="!isAllow && !isDeleted && (!isAuthor || !isCommunityOwner)">
+    <h1>This post is waiting to be accepted by moderator</h1>
+    <button type="button" title="Go back" onclick="window.history.back()">Go back</button>
+</div>
+
+
+

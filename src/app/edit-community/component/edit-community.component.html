@@ -1,0 +1,56 @@
+<div id="container">
+    <div id="form" *ngIf="isOwner">
+        <button id="btn_back">
+            <i class="pi pi-arrow-left" title="back" (click)="goBack()"></i>
+        </button>
+        <div id="header">
+            <h2 style="width: 100%;; text-align: center; color: var(--secondary_color);">Edit community r/{{communityInfo.name}}</h2>
+        </div>
+        <input id="input_name" type="text" placeholder="Name" maxlength="21" #community_name [disabled]="true" [value]="communityInfo.name">
+        <div id="post_title_block">
+            <textarea id="input_post_title" maxlength="300" required placeholder="Enter description for your community" (input)="onInputDescription($event)" [value]="communityInfo.description"></textarea>
+            <span id="character_count">{{characterCount}}/300</span>
+        </div>  
+             
+        <input id="input_upload_img" type="file" accept="image/*" (change)="upLoadImg($event)" #input_img>
+        <div id="upload_img_container">
+            <div id="avatar_container">
+            <img id="avatar_display" [src]="avatar_url">
+            </div>
+            <button id="btn_upload_img" type="button" (click)="input_img.click()">Upload your community avatar</button>
+        </div>
+
+        <input id="input_upload_banner" type="file" accept="image/*" (change)="upLoadBanner($event)" #input_banner>
+        <div id="upload_banner_container">
+            <div id="banner_container">
+            <img id="banner_display" [src]="banner_url">
+            </div>
+            <button id="btn_upload_banner" type="button" (click)="input_banner.click()">Upload your community banner</button>
+        </div>
+        <div id="scope_block">
+            <b style="font-size: 20px;">Select your community scope</b>
+            <div class="radio_block">
+                <input id="public" type="radio" name="scope" value="0" (click)="selectScope(0)">
+                <label for="public"><p> <b>Public</b> (Everyone can post)</p></label>
+            </div>
+            <div class="radio_block">
+                <input id="protect" type="radio" name="scope" value="1" (click)="selectScope(1)">
+                <label for="protect"><p> <b>Protected</b> (Moderator need to accept post before it can be view)</p></label>
+            </div>
+        </div>
+        <div id="btn_block">
+            <div id="button_container">
+                <button id="btn_cancel" type="button" (click)="cancel()">Cancel</button>
+                <button id="btn_submit" type="submit" [disabled]="!allowSubmit" (click)="submit()">
+                    <p>Edit r/{{community_name.value}}</p>
+                </button>
+            </div>
+        </div>
+        <button id="btn_delete" (click)="deleteCommunity()">Delete community</button>
+    </div>
+    <div *ngIf="!isOwner">
+        <h2>Permission denied</h2>
+    </div>
+</div>
+
+
